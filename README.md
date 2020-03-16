@@ -1,19 +1,54 @@
 # Base de datos  de ingredientes 
-####
-# Endpoints
-# AGREGAR INGREDIENTES para agregar ingredientes nuevos, metodo POST
+##############################
 
-/addingrediente
+# ENDPOINTS
 
-# OBTENER INGREDIENTE, para obtener un ingrediente por id metodo GET
+## AGREGAR INGREDIENTES para agregar ingredientes nuevos, metodo POST
 
-/ingrediente/:id
+    /addingrediente
 
-# EDITAR INGREDIENTE metodo PUT
+## OBTENER INGREDIENTE, para obtener un ingrediente por id metodo GET
 
-/editarIngrediente
+    /ingrediente/:id
 
-# ELIMINAR INGREDIENTE BY ID metodo DELETE
+## EDITAR INGREDIENTE metodo PUT
 
-/eliminaringrediente/:id
+    /editarIngrediente
+
+## ELIMINAR INGREDIENTE BY ID metodo DELETE
+
+    /eliminaringrediente/:id
+
+################################
+
+# ENDPOINTS DE RECETAS
+
+## obtener receta by id method GET
+    /receta/:_id
+
+## obtener todas las recetas method GET
+    /recetaTodas
+
+## agregar receta
+    /crearReceta
+
+## editar receta
+    /editaReceta
+
+## eliminar receta
+    /eliminarReceta/:_id
+
+######################################
+# REGISTRO DE USUARIOS
+
+# recistro usuario
+
+    /registrarsusario
+
+# login usuario   
+
+    /login
+
+
+
 
