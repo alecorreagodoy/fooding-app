@@ -17,7 +17,7 @@ const Schema = mongoose.Schema({
        min: 5,
        max: 45
     },
-    "ingrediente":[
+    "ingredientes":[
         {
         type: types.ObjectId,
         ref:"ingredientes",

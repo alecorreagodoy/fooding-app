@@ -30,6 +30,13 @@ exports.ingredienteId = (req, res)=>{
     })
 }
 
+exports.getAllIngredients = (req, res)=>{
+    ingrediente.find((error, result)=>{
+        if(error) throw error;
+        res.send(result)
+    })
+}
+
 exports.updateIngrediente = (req, res) => {
 
     const data = {

@@ -12,6 +12,8 @@ server.use(bodyParser.json());
 //endpoints ingredientes
 server.get('/ingrediente/:_id', ingredientesController.ingredienteId);
 
+server.get('/todosIngredientes', ingredientesController.getAllIngredients)
+
 server.post('/addingrediente', ingredientesController.addIngrediente);
 
 server.put('/editarIngrediente', ingredientesController.updateIngrediente);
@@ -24,6 +26,14 @@ server.delete('/eliminaringrediente/:_id', ingredientesController.eliminarIngred
 server.post('/registrarsusario', userController.register);
 //login user
 server.post('/login',userController.login);
+
+server.get('/todosUsuarios', userController.allUsuarios)
+
+server.get('/usuario/:_id', userController.userById);
+//endpoint edit usuario
+server.put('/editarUsuario', userController.upDateUser);
+//endpoit de delete usuaruio
+server.delete('/eliminarUsuario/:_id', userController.deleteUser);
 
 //ENDPOINTS RECETAS
 //obtener receta by id

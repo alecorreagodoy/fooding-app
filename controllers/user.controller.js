@@ -135,3 +135,47 @@ exports.checkToken = (req, res, callback) => {
         return false;
     }
 }
+exports.userById = (req, res)=>{
+    const id = req.params._id;
+    user.findById(id, (error, result)=>{
+        if(error) throw error
+            res.send(result)
+
+    })
+}
+
+exports.allUsuarios = (req, res)=>{
+    user.find((error, receta) => {
+        if(error) throw error;
+        res.send(receta)
+    })
+}
+exports.upDateUser = (req, res)=>{
+    const data ={
+        "_id": req.body._id,
+        "userName": req.body.userName,
+        "password": req.body.password,
+        "email": req.body.email
+     }
+
+     user.findByIdAndUpdate(
+        req.body._id,
+        {
+            $set: data
+        },
+        (error, result) => {
+            if (error) throw error;
+            res.send({ "message": "Usuario actualizad@" })
+            
+        }
+     )
+}
+
+exports.deleteUser = (req, res)=>{
+    const id = req.params._id;
+    user.findByIdAndDelete(id, (error, result)=>{
+        if(error) throw error
+            res.send({"message":"Usuario borrado con éxito!"})
+
+    })
+}
