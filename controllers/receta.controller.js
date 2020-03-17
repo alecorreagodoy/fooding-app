@@ -35,7 +35,7 @@ exports.updateReceta = (req, res) => {
     const data = {
         "_id": req.body._id,
         "name":req.body.name,
-        "ingredientes": req.body.ingredientes, 
+        "ingrediente": req.body.ingrediente, 
         "tipo": req.body.tipo,
         "descripcion": req.body.descripcion,
         "procedimiento": req.body.procedimient,
