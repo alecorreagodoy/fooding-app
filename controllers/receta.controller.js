@@ -81,8 +81,48 @@ exports.recetaId = (req, res)=>{
 }
 
 exports.allRecetas = (req, res)=>{
-    receta.find((error, receta) => {
+    //busqueda en bd //find 86 parametro where 87 param select null pora q traigatodo, 88 recibe {} con opciones de busq,skip dice cuantos objetos se va asltear,limit tamanyo de pagina
+    receta.find( 
+        { name: new RegExp(req.body.search , "i")}, 
+        null,
+        { skip: req.body.pageSize*req.body.currentPage, order: {name:1} , limit: req.body.pageSize  }
+
+    ) 
+    //populate completa campos ref:ingredientes
+    .populate({path:"ingredientes"})
+    .exec(
+        (error, receta) => {
+
         if(error) throw error;
-        res.send(receta)
+        res.send(receta)})
+}
+
+//Devuelve recetas by ingredientes
+exports.allRecetasInversas = (req, res)=>{
+    receta.find( 
+        null,//trae todos las recetas
+        {"_id":1, "ingredientes":1},//solo el campo id e ingredientes
+        { order: {name:1}  }
+
+    ) 
+    .populate({path:"ingredientes", match : {"nombre": new RegExp(req.body.search , "i") }})
+    .exec(
+        (error, recetas) => {
+
+        if(error) throw error;
+        
+        const recetasEncontradas = recetas.filter((r)=>{ //busca las recetas que tenga ingredientes, satisfacen el mach de 108
+            return r.ingredientes.length > 0; 
+        })
+
+       receta.find(
+           //where busca todas la recetas las q tengan el id q estan en recetasEctradas //map para un {} para otro {} 
+           {"_id":{$in:recetasEncontradas.map(receta=>receta['_id'])}},
+       (error, receta) => {
+
+        if(error) throw error;
+        res.send(receta)}
+       ).populate({path:"ingredientes"})
     })
+
 }

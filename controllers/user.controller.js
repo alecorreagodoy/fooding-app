@@ -62,7 +62,7 @@ exports.login = (req, res) => {
     user.find({$or:[{
         userName: req.body["userName"]
     }, {
-        email: req.body["email"]
+        email: req.body["userName"]
     }]},
         (error, user) => {
             if (error) throw error;

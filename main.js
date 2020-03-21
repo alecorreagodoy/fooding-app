@@ -3,27 +3,55 @@ const bodyParser = require('body-parser');
 const ingredientesController = require('./controllers/ingredientes.controller');
 const userController = require('./controllers/user.controller');
 const recetaController = require('./controllers/receta.controller');
+const multer = require('multer');
+const cloudinary = require('cloudinary').v2;
+const fs = require('fs');
+const { body } = require('express-validator');
+const cors = require('cors');
+
 //server
 const server = express();
 
 //middleware
+server.use(cors());
 server.use(bodyParser.json());
+server.use(express.static('web'));
+
 
 //endpoints ingredientes
-server.get('/ingrediente/:_id', ingredientesController.ingredienteId);
+server.get('/ingrediente/:_id', 
+    // Handle the request somehow
+    ingredientesController.ingredienteId
+  );
+
 
 server.get('/todosIngredientes', ingredientesController.getAllIngredients)
 
-server.post('/addingrediente', ingredientesController.addIngrediente);
+server.post('/addIngrediente', ingredientesController.addIngrediente);
 
 server.put('/editarIngrediente', ingredientesController.updateIngrediente);
 
-server.delete('/eliminaringrediente/:_id', ingredientesController.eliminarIngrediente);
+server.delete('/eliminarIngrediente/:_id', ingredientesController.eliminarIngrediente);
 
 
 //ENDPOINTS USERS
 //register user
-server.post('/registrarsusario', userController.register);
+server.post('/registrarUsuario', [
+  body('userName')
+  .isEmpty()
+  .withMessage("Name field cannot be empty."),
+    body('email')
+      .isEmail()
+      .normalizeEmail()
+      .withMessage("Enter valid email address."),
+    body('password')
+      .matches("password2")
+      .withMessage("Password dont match.")
+      .not().isEmpty()
+      .trim()
+      .escape(),
+   
+  ], userController.register);
 //login user
 server.post('/login',userController.login);
 
@@ -46,6 +74,43 @@ server.post('/crearReceta',recetaController.addReceta );
 server.put('/editaReceta',recetaController.updateReceta);
 //eliminar recetas
 server.delete('/eliminarReceta/:_id',recetaController.eliminaReceta);
+
+//ENDPOINT RECETA INVERSA
+
+server.get('/recetaInversa', recetaController.allRecetasInversas);
+
+server.post('/upload', (req, res) =>{
+    const storageConfig = multer.diskStorage({
+        destination:'./uploads'
+    });
+    const upload = multer({"storage": storageConfig}).single('myFile');
+
+    upload(req, res, (error) =>{
+
+        if(error) throw error;
+        //subire la imagen a cloudinary
+        cloudinary.config({
+            "cloud_name":"dcerhjsxd",
+            "api_key":"982675844322315",
+            "api_secret":"lHv-_VJ6px_lyZVIE5AF5i5FkLk"
+        })
+        const filePaht = req.file.path;
+        //creo un nombre random que es unico con el momentos
+        const fileRandomName = Date.now();
+
+        cloudinary.uploader.upload(
+            filePaht,
+            {public_id:`api/${fileRandomName}`,tags:`tuimg`},
+            (error, imagen)=>{
+                if(error) throw error;
+                //Borrar la imagen del servidor unlink
+                fs.unlinkSync(filePaht);
+                res.send(imagen);
+            }
+            
+        )
+    })
+})
 
 
 //listen

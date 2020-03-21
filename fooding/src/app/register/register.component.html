@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.6">
+    <title>Checkout example · Bootstrap</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/checkout/">
+
+    <!-- Bootstrap core CSS -->
+<link href=https://getbootstrap.com/docs/4.4/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="https://getbootstrap.com/docs/4.4/examples/checkout/form-validation.css" rel="stylesheet">
+  </head>
+  <body class="">
+    <div class=" back">
+      <br>
+      <div class="card" style="max-width: 25rem; margin-top: 0px;">
+        <div class="card-body">
+         
+      <div class=" contenedor">
+        <div class="col-s-12   ">
+  <div class="py-5 text-center ">
+    <img class="d-block mx-auto mb-4" src="../assets/img/logo.png" alt="logo" width="80" height="80">
+  
+    <h2>Regístrate</h2>
+    <p class="">Ingresa tus datos para disfrutar de miles de recetas</p>
+  </div>
+  </div>
+
+  <div class="row">
+
+   
+    <div class="col-s-12  col-12 input">
+        <div class="mb-3">
+          <label for="username">Username</label>
+        
+            <input [(ngModel)]="data.userName" type="text" class="form-control" id="username" placeholder="Username" >
+            <div class="invalid-feedback" style="width: 100%;">
+              Your username is required.
+            </div>
+          
+        </div>
+    </div>
+
+        <div class="mb-3 col-s-12  col-12 input">
+          <label for="email">Email</label>
+          <input [(ngModel)]="data.email" type="email" class="form-control" id="email" placeholder="you@example.com">
+          <div class="invalid-feedback">
+            Please enter a valid email address for shipping updates.
+          </div>
+        </div>
+        <div class="mb-3 col-s-12 col-12 input">
+          <label for="password">Password</label>
+          <label for="inputPassword" class="sr-only">Password</label>
+          <input [(ngModel)]="data.password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+          <div class="invalid-feedback">
+            Please enter a valid email address for shipping updates.
+          </div>
+        </div>
+        <div class="mb-3 col-s-12 col-12 input">
+          <button class="btn btn-lg btn-primary btn-block" (click)= "submit()" >Sign in</button>
+        </div>
+
+       
+
+       
+      
+  </div>
+  </div>
+         
+        </div>
+      </div>
+
+
+  <footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">&copy; 2020-2021 Fooding</p>
+    <ul class="list-inline">
+      <li class="list-inline-item"><a href="#">Privacy</a></li>
+      <li class="list-inline-item"><a href="#">Terms</a></li>
+      <li class="list-inline-item"><a href="#">Support</a></li>
+    </ul>
+  </footer>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+      <script>window.jQuery || document.write('<script src="/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="/docs/4.4/dist/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+        <script src="form-validation.js"></script></body>
+</html>
