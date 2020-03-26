@@ -1,0 +1,24 @@
+
+
+
+
+    <div class="card"   *ngFor = " let receta of _data.recetas; let i = index" >
+      <img src="/assets/img/plato.jpg" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{receta["name"]}}</h5>
+       <p>Tiempo de elaboración: {{receta["tiempoElaboracion"]}}</p>
+       <p>Ingredientes:</p>
+        <p *ngFor ="let ingrediente of receta.ingredientes; let y =index" class="card-text"> {{ingrediente}}</p>
+        <p>Descripción: {{receta["descripcion"]}}</p>
+        <p>Autor: {{receta["author"]}} </p>
+      </div>
+      <button type="button" class="btn btn-outline-light">Light</button>
+
+    </div>
+    
+    
+    
+
+
+
+

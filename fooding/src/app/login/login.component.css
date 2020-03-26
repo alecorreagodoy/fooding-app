@@ -1,3 +1,22 @@
-body{
-    align-content: center;
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+    }
+  }
+
+
+.form-signin{
+   margin-left: 20%;
+   margin-right: 20%;
+   text-align: center;
+   
+}
+.btn{
+    background-color: rgb(255, 162, 161);
+    color: rgb(0, 178, 145);
+   
+    border-radius: 30px;
+}
+.logo{
+   margin-top: 30px;
 }

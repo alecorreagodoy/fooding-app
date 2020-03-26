@@ -1,0 +1,18 @@
+.card{
+    border-radius: 25px;
+    box-shadow: 5px 5px 5px rgb(9, 109, 91);
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.card-img-top{
+    border-radius: 25px;
+}
+.color{
+    background-color:rgb(255, 162, 161);
+}
+.row{
+    background-color: rgb(0, 178, 145);
+    margin-right: 0px;
+    margin-left: -15px;
+ 
+}

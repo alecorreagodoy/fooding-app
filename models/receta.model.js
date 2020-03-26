@@ -17,14 +17,15 @@ const Schema = mongoose.Schema({
        min: 5,
        max: 45
     },
-    "ingredientes":[
+    "ingredientes":
         {
-        type: types.ObjectId,
-        ref:"ingredientes",
+        type:  types.Array,
+        //types.ObjectId,
+        //ref:"ingredientes",
         require: true
        
     }
-    ],
+    ,
     "tipo":{
         type: types.String,
         require: true,
@@ -34,19 +35,19 @@ const Schema = mongoose.Schema({
     "descripcion":{
         type: types.String,
         require: true,
-        min: 10,
+        min: 5,
         max: 150
     },
     "procedimiento":{
         type: types.String,
         require: true,
-        min: 10,
-        Max: 500
+        min: 5,
+        Max: 200
 
     },
     "fechaCreacion":{
         type: types.String,
-        require: true
+        
     
     },
     "tiempoElaboracion":{
@@ -57,7 +58,7 @@ const Schema = mongoose.Schema({
     "temporada":{
         type: types.Boolean,
         default: true,
-        require: true
+        
 
     },
     "isAnonymous":{

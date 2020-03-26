@@ -13,6 +13,11 @@ import { FormsModule } from '@angular/forms';
 import { DataService } from './service/data.service';
 import { UserService } from './service/user.service';
 import { HttpClientModule } from '@angular/common/http';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { FooterComponent } from './footer/footer.component';
+import { CardsComponent } from './cards/cards.component';
+import { Error404Component } from './error404/error404.component';
+import { CreateRecetaComponent } from './create-receta/create-receta.component';
 
 
 
@@ -22,7 +27,11 @@ const RouterConfig: Routes =[
   {"path": "login", "component": LoginComponent},
   {"path":"register", "component": RegisterComponent},
   {"path":"user", "component":UserComponent},
+  {"path":"user/:_id", "component":UserComponent},
   {"path":"receta", "component":RecetaComponent},
+  {"path":"creaReceta", "component": CreateRecetaComponent},
+  {"path":"**", "component":Error404Component},
+
 
 ]
 
@@ -33,7 +42,12 @@ const RouterConfig: Routes =[
     LoginComponent,
     UserComponent,
     RegisterComponent,
-    RecetaComponent
+    RecetaComponent,
+    NavBarComponent,
+    FooterComponent,
+    CardsComponent,
+    Error404Component,
+    CreateRecetaComponent
     
   ],
   imports: [

@@ -1,0 +1,127 @@
+<div class="container">
+    <div>
+        <h1>Crear Receta</h1>
+    </div>
+    <div class="row">
+     
+        <div class="forms col-s-12">
+        <form 
+            name="formNewReceta"
+            #miFormulario="ngForm"
+            (ngSubmit)="miFormulario.form.valid && submitData() "
+            
+        >
+           
+            <div class="form-group">
+                <label for="formGroupExampleInput2">Nombre de la receta:</label>
+                <input 
+                    required
+                    name="NameReceta"
+                    #inputNameReceta="ngModel"
+                    type="text" 
+                    class="form-control" 
+                    placeholder="introduce el nombre de tu receta"
+                    [(ngModel)]="formData['name']"
+                 >
+              </div>
+              <div class="form-group">
+                <label for="formGroupExampleInput2">Ingredientes:</label>
+                <textarea 
+                    required
+                    name="ingredientes"
+                    #inputIngredientes="ngModel"
+                    type="text" 
+                    class="form-control" 
+                    placeholder="introduce los ingredientes con sus cantidades"
+                    [(ngModel)]="formData['ingredientes']"
+                ></textarea>
+              </div>
+            
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label for="formGroupExampleInput2">Categoria:</label>
+                </div>
+                <select 
+                required
+                class="custom-select"
+                #inputCategoria="ngModel"
+                name="tipo" 
+                [(ngModel)]="formData['tipo']"
+                >
+                  <option selected>Choose...</option>
+                  <option value="entrante">Entrante</option>
+                  <option value="principal">Principal</option>
+                  <option value="postre">Postre</option>
+                  <option value="pasteleria">Pastelería</option>
+                </select>
+              </div>
+           
+              <div class="form-group">
+                <label for="formGroupExampleInput2">Descripción:</label>
+                <textarea 
+                    required
+                    type="text"
+                    name="descripcion"
+                    #inputDescripcion="ngModel"
+                    class="form-control" 
+                    rows="3" 
+                    placeholder="Explica los pasos a seguir para realizar tu receta"
+                    [(ngModel)]="formData['descripcion']"
+                    
+                    >
+                    
+                </textarea>
+            </div>
+              <div class="form-group">
+                <label for="formGroupExampleInput2">Procedimiento:</label>
+                <textarea 
+                    required
+                    type="text"
+                    name="procedimiento"
+                    #inputProcedimiento="ngModel"
+                    class="form-control" 
+                    rows="3" 
+                    placeholder="Explica los pasos a seguir para realizar tu receta"
+                    [(ngModel)]="formData['procedimiento']"
+                    
+                    >
+                    
+                </textarea>
+            </div>
+            <div class="form-group">
+                <label for="formGroupExampleInput2">Tiempo de elaboración:</label>
+                <input 
+                    required
+                    type="text" 
+                    name="tiempoElaboracion"
+                    #inputTimeElaboracion="ngModel"
+                    class="form-control" 
+                    placeholder="Introduce el tiempo que lleva realizar tu receta"
+                    [(ngModel)]="formData['tiempoElaboracion']"
+                >
+              </div>
+            <div class="form-group">
+                <label for="formGroupExampleInput2">Autor:</label>
+                <input 
+                    required
+                    type="text"
+                    name="author"
+                    #inputAuthor="ngModel" 
+                    class="form-control"  
+                    placeholder="Que todos sepan quien creo esta receta!"
+                    [(ngModel)]="formData['author']"
+                    >
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlFile1"> Sude tu imagen:</label>
+                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+            </div>
+            <button type="submit" class="btn" data-toggle="button" (click)= "submitData()" aria-pressed="false" >
+                Crear
+              </button>
+          </form>
+          </div>
+
+    </div>
+
+</div>

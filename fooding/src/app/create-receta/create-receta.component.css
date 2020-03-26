@@ -1,0 +1,30 @@
+.container{
+    background-color: rgb(0, 178, 145);
+}
+
+h1{
+    color:rgb(255, 162, 161);
+    text-shadow:10px 5px 5px rgb(9, 109, 91);
+   
+}
+
+.btn{
+    background-color: rgb(255, 162, 161);
+    color: rgb(0, 178, 145);
+   
+    border-radius: 30px;
+}
+label{
+    color:rgb(255, 162, 161);
+}
+input{
+    background-color: rgb(255, 162, 161);
+    
+}
+textarea{
+    background-color: rgb(255, 162, 161);
+}
+
+.forms{
+    box-shadow: 10px 5px 5px rgb(9, 109, 91);
+}

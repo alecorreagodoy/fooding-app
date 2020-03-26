@@ -1,0 +1,13 @@
+.row{
+    background-color: rgb(0, 178, 145);
+    margin-right: 0px;
+    margin-left: -15px;
+ 
+}
+.container{
+    margin-left: auto;
+    margin-top: 20px;
+    height: 100%;
+    margin-bottom: 50px;
+}
+

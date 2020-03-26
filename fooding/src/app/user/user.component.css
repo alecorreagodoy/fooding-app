@@ -1,0 +1,25 @@
+body{
+    background-color:  rgb(0, 178, 145);
+    height: 100%;
+
+}
+
+.img{
+    margin: auto;
+   
+}
+
+.card{
+    margin-top: 20px;
+    margin-left: 20px;
+    text-align: center;
+}
+.btn{
+    background-color: rgb(255, 162, 161);
+    color: rgb(0, 178, 145);
+   
+    border-radius: 30px;
+}
+h2{
+    color:rgb(255, 162, 161);
+}
