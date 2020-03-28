@@ -3,6 +3,8 @@
     box-shadow: 5px 5px 5px rgb(9, 109, 91);
     margin-left: 10px;
     margin-right: 10px;
+    
+    
 }
 .card-img-top{
     border-radius: 25px;
@@ -15,4 +17,11 @@
     margin-right: 0px;
     margin-left: -15px;
  
+}
+.btn{
+    background-color:rgb(255, 162, 161);
+    border-radius: 20px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+   
 }

@@ -12,7 +12,8 @@ export class DataService {
   myApi: string = "http://localhost:3000";
 recetas:  any= [];
 usuarios:  any=[];
-newReceta: any=[]
+newReceta: any=[];
+receta: any=[]
  
 
   constructor(public _http: HttpClient, public _route: ActivatedRoute, public _router: Router) { 
@@ -38,8 +39,8 @@ newReceta: any=[]
 
 
 addReceta(recetas){
-  var ing = recetas.ingredientes[0].split(/\r?\n/g);
-  debugger
+  var ing = recetas.ingredientes.split(/\r?\n/g);
+ 
   recetas.ingredientes = ing;
   this._http.post(`${this.myApi}/crearReceta`, recetas)//este observable se resolvera cuando s
     .subscribe( (response)=>{
@@ -47,9 +48,25 @@ addReceta(recetas){
 
       
       console.log(response)
-
+      if(response['_id']){
+        this._router.navigateByUrl('/receta/'+response['_id']);
+      }
   })
   
+}
+getReceta(id){
+  //this.receta = this.receta[id]
+  this._http.get(`${this.myApi}/receta/${id}`)
+
+  .subscribe( (response)=>{
+  console.log(response)
+    this.receta = [];
+
+    this.receta = response;
+   
+
+})
+
 }
 }
 

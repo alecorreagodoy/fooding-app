@@ -84,7 +84,8 @@ exports.login = (req, res) => {
                                 res.cookie("coronavirus", token);
                                 res.send({
                                     "succes": "Bienvenido",
-                                    "token": token
+                                    "token": token,
+                                    "un":user[0].userName
                                 })
                             }
                         )

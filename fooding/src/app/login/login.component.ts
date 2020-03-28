@@ -23,6 +23,7 @@ export class LoginComponent  {
         if (response["succes"] === "Bienvenido") {
           this._user.isLogged = true;
           document["cookie"] = `noisses=${response["token"]}`;
+          document["cookie"] = `un=${response["un"]}`;
           this._router.navigateByUrl("/home")
         }
 

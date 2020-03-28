@@ -38,26 +38,26 @@
   </head>
   <body>
     <header>
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top ">
-    <a class="navbar-brand" href="#"><img src="/assets/img/FOODING-ICONO.png" class="logo" width="50" height="50" alt="logo"></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
-      </ul>
+      <nav class="navbar navbar-expand-md navbar-dark sticky-top ">
+        <a class="navbar-brand" href="#"><img src="/assets/img/FOODING-ICONO.png" width="50" height="50" alt="logo"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Perfil</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " href="#" tabindex="-1" >Crear receta</a>
+            </li>
+          </ul>
       <form class="form-inline mt-2 mt-md-0">
        
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Crear Receta</button>
+        <button  routerLink = "/creaReceta" class="btn btn-outline-success my-2 my-sm-0" type="button">Crear Receta</button>
       </form>
     </div>
   </nav>
@@ -81,13 +81,19 @@
     <hr class="featurette-divider">
 
     <div class="row featurette">
-      <div class="col-md-7">
-        <h2 class="featurette-heading">Ensalada Mola. <span class="text-muted">It’ll blow your mind.</span></h2>
-        <h3>Ingrefientes</h3>
-        <ul>
-          <li>uno</li>
-    
+      <div class="col-md-7"  >
+        <h1 class="featurette-heading">{{_data.receta['name']}} </h1>
+        <h4 >Ingredientes</h4>
+        <ul   *ngFor="let ingrediente of _data.receta['ingredientes']">
+          <li>{{ingrediente}}</li>
         </ul>
+        <p>Tiempo de elaboración: {{_data.receta['tiempoElaboracion']}}  minutos. </p>
+        <H4>Descripción</H4>
+        <p>{{_data.receta['description']}} </p>
+        <h4>Procedimiento</h4>
+        <p>{{_data.receta['procedimiento']}} </p>
+        <p>Autor: <a href="#" routerLink="user/{{['_id']}}">{{_data.receta['author']}}</a> </p> 
+          
       </div>
       <div class="col-md-5">
         <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="600" height="600" src="/assets/img/ensalada2.jpg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title>

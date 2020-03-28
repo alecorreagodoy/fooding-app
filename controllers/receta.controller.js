@@ -140,3 +140,18 @@ exports.allRecetasInversas = (req, res)=>{
 
 
 }
+exports.recetaUserAuthor = (req, res)=>{
+     console.log(req.cookies)
+    receta.find( 
+        { author: req.cookies['un']}, 
+        null
+
+    ) 
+   
+    .exec(
+        (error, receta) => {
+
+        if(error) throw error;
+        res.send(receta)})
+
+}

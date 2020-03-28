@@ -8,6 +8,7 @@ const cloudinary = require('cloudinary').v2;
 const fs = require('fs');
 const { body } = require('express-validator');
 const cors = require('cors');
+const cookieParser = require('cookie-parser')
 
 //server
 const server = express();
@@ -16,6 +17,7 @@ const server = express();
 server.use(cors());
 server.use(bodyParser.json());
 server.use(express.static('web'));
+server.use(cookieParser())
 
 
 //endpoints ingredientes
@@ -63,6 +65,8 @@ server.put('/editarUsuario', userController.upDateUser);
 //endpoit de delete usuaruio
 server.delete('/eliminarUsuario/:_id', userController.deleteUser);
 
+
+
 //ENDPOINTS RECETAS
 //obtener receta by id
 server.get('/receta/:_id', recetaController.recetaId)
@@ -74,6 +78,8 @@ server.post('/crearReceta',recetaController.addReceta );
 server.put('/editaReceta',recetaController.updateReceta);
 //eliminar recetas
 server.delete('/eliminarReceta/:_id',recetaController.eliminaReceta);
+
+server.get('/recetaAutor', recetaController.recetaUserAuthor)
 
 //ENDPOINT RECETA INVERSA
 

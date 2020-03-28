@@ -8,7 +8,7 @@ import { UserService}  from  '../service/user.service'
   styleUrls: ['./user.component.css']
 })
 export class UserComponent {
-
+  autorReceta: string=""
   constructor(public _route : ActivatedRoute, public _data : UserService) {
    
     this._route.paramMap.subscribe(
@@ -17,6 +17,9 @@ export class UserComponent {
        
       }
     ) 
+    this.autorReceta = _route.snapshot.params["author"];
+
+    _data.showRecetasUser()
 }
 
  

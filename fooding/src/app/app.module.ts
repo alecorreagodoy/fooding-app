@@ -29,6 +29,8 @@ const RouterConfig: Routes =[
   {"path":"user", "component":UserComponent},
   {"path":"user/:_id", "component":UserComponent},
   {"path":"receta", "component":RecetaComponent},
+  {"path":"receta/:author", "component":RecetaComponent},
+  {"path":"receta/:_id", "component":RecetaComponent},
   {"path":"creaReceta", "component": CreateRecetaComponent},
   {"path":"**", "component":Error404Component},
 

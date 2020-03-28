@@ -1,9 +1,12 @@
 .container{
     background-color: rgb(0, 178, 145);
+    width: 100%;
 }
-
+.row{
+    text-align: center;
+}
 h1{
-    color:rgb(255, 162, 161);
+    color:rgb(250, 246, 246);
     text-shadow:10px 5px 5px rgb(9, 109, 91);
    
 }
@@ -15,16 +18,20 @@ h1{
     border-radius: 30px;
 }
 label{
-    color:rgb(255, 162, 161);
+    color:rgb(245, 241, 241);
 }
 input{
-    background-color: rgb(255, 162, 161);
+    background-color: rgb(248, 242, 241);
     
 }
 textarea{
-    background-color: rgb(255, 162, 161);
+    background-color: rgb(248, 245, 245);
 }
 
 .forms{
-    box-shadow: 10px 5px 5px rgb(9, 109, 91);
+    
+    border-radius: 10px;
+    margin-left: 20px;
+    margin-right: 10px;
+    width: 600px;
 }
