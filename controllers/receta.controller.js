@@ -1,5 +1,6 @@
 const receta = require('../models/receta.model');
 const mongoose = require('mongoose');
+const usuario = require('../models/user.model')
 
 
 mongoose.connect("mongodb://localhost:27017/fooding", {
@@ -10,6 +11,7 @@ mongoose.connect("mongodb://localhost:27017/fooding", {
 //CREAR RECETA
 exports.addReceta = (req, res)=>{
     //console.log(req.body)
+    let id = req.params.id
     const data = {
         "_id": mongoose.Types.ObjectId(),
         "name":req.body.name,
@@ -21,7 +23,8 @@ exports.addReceta = (req, res)=>{
         "tiempoElaboracion": req.body.tiempoElaboracion,
         "temporada": req.body.temporada,
         "isAnonymous": req.body.isAnonymous,
-        "author": req.body.author
+        "author": req.body.author,
+        "user": id
     }
     const newReceta = new receta(data);
     newReceta.save((error,result) =>{
@@ -100,35 +103,17 @@ exports.allRecetas = (req, res)=>{
 
 //Devuelve recetas by ingredientes
 exports.allRecetasInversas = (req, res)=>{
-    // receta.find( 
-    //     null,//trae todos las recetas
-    //     {"_id":1, "ingredientes":1},//solo el campo id e ingredientes
-    //     { order: {name:1}  }
+ 
+    let search = req.params.search;
+    if(search=== undefined){
+        search = ""
 
-    // ) 
-    // .populate({path:"ingredientes", match : {"nombre": new RegExp(req.body.search , "i") }})
-    // .exec(
-    //     (error, recetas) => {
-
-    //     if(error) throw error;
-        
-    //     const recetasEncontradas = recetas.filter((r)=>{ //busca las recetas que tenga ingredientes, satisfacen el mach de 108
-    //         return r.ingredientes.length > 0; 
-    //     })
-
-    //    receta.find(
-    //        //where busca todas la recetas las q tengan el id q estan en recetasEctradas //map para un {} para otro {} 
-    //        {"_id":{$in:recetasEncontradas.map(receta=>receta['_id'])}},
-    //    (error, receta) => {
-
-    //     if(error) throw error;
-    //     res.send(receta)}
-    //    ).populate({path:"ingredientes"})
-    // })
+    }
+    console.log(search)
     receta.find( 
-        { $or: [{name: new RegExp(req.body.search , "i")},{ingredientes: new RegExp(req.body.search , "i")}]}, 
+        { $or: [{name: new RegExp(search , "i")},{ingredientes: new RegExp(search , "i")}]}, 
         null,
-        { skip: req.body.pageSize*req.body.currentPage, order: {name:1} , limit: req.body.pageSize  }
+        { skip: req.params.pageSize*req.params.currentPage, order: {name:1} , limit: req.params.pageSize  }
 
     ) 
     
@@ -137,17 +122,14 @@ exports.allRecetasInversas = (req, res)=>{
 
         if(error) throw error;
         res.send(receta)})
-
-
 }
+
 exports.recetaUserAuthor = (req, res)=>{
      console.log(req.cookies)
-    receta.find( 
-        { author: req.cookies['un']}, 
-        null
+    receta.find({ author: req.cookies['un']},    
+     null
+    )
 
-    ) 
-   
     .exec(
         (error, receta) => {
 

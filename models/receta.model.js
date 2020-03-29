@@ -68,16 +68,18 @@ const Schema = mongoose.Schema({
     },
 
     "author":{
-        type: types.String,
-        require: ()=>{
-            if(this.isAnonymous === true){
-                return false
-            }else{
-                return true;
-            }
-        }
+        type: types.ObjectId, 
+        ref: "usuario"
+        // require: ()=>{
+        //     if(this.isAnonymous === true){
+        //         return false
+        //     }else{
+        //         return true;
+        //     }
+        // }
 
     },
+    
 
 
     

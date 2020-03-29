@@ -11,10 +11,13 @@ export class RecetaComponent implements OnInit {
 idReceta: string=""
 
   constructor(public _route : ActivatedRoute, public _data : DataService) { 
-    this.idReceta = _route.snapshot.params["_id"];
+    this.idReceta = _route.snapshot.params["author"];
     
     _data.getReceta(this.idReceta);
+    
 
+
+    
 
   }
 

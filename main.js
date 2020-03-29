@@ -8,7 +8,9 @@ const cloudinary = require('cloudinary').v2;
 const fs = require('fs');
 const { body } = require('express-validator');
 const cors = require('cors');
-const cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser');
+const fileUpload = require('express-fileupload');
+const path = require('path');
 
 //server
 const server = express();
@@ -17,7 +19,8 @@ const server = express();
 server.use(cors());
 server.use(bodyParser.json());
 server.use(express.static('web'));
-server.use(cookieParser())
+server.use(cookieParser());
+server.use(fileUpload());
 
 
 //endpoints ingredientes
@@ -79,43 +82,102 @@ server.put('/editaReceta',recetaController.updateReceta);
 //eliminar recetas
 server.delete('/eliminarReceta/:_id',recetaController.eliminaReceta);
 
-server.get('/recetaAutor', recetaController.recetaUserAuthor)
+server.get('/recetaAutor/author', recetaController.recetaUserAuthor)
 
 //ENDPOINT RECETA INVERSA
 
 server.get('/recetaInversa', recetaController.allRecetasInversas);
+server.get('/recetaInversa/:search', recetaController.allRecetasInversas);
 
+//ENDPOINT UPLOAD IMAGEN
 server.post('/upload', (req, res) =>{
-    const storageConfig = multer.diskStorage({
-        destination:'./uploads'
-    });
-    const upload = multer({"storage": storageConfig}).single('myFile');
+  const storageConfig = multer.diskStorage({
+    destination:'./uploads'
+});
+const upload = multer({"storage": storageConfig}).single('myFile');
 
-    upload(req, res, (error) =>{
+upload(req, res, (error) =>{
 
-        if(error) throw error;
-        //subire la imagen a cloudinary
-        cloudinary.config({
-            "cloud_name":"dcerhjsxd",
-            "api_key":"982675844322315",
-            "api_secret":"lHv-_VJ6px_lyZVIE5AF5i5FkLk"
-        })
-        const filePaht = req.file.path;
-        //creo un nombre random que es unico con el momentos
-        const fileRandomName = Date.now();
+    if(error) throw error;
 
-        cloudinary.uploader.upload(
-            filePaht,
-            {public_id:`api/${fileRandomName}`,tags:`tuimg`},
-            (error, imagen)=>{
-                if(error) throw error;
-                //Borrar la imagen del servidor unlink
-                fs.unlinkSync(filePaht);
-                res.send(imagen);
-            }
-            
-        )
+    //subire la imagen a cloudinary
+    cloudinary.config({
+        "cloud_name":"dcerhjsxd",
+        "api_key":"982675844322315",
+        "api_secret":"lHv-_VJ6px_lyZVIE5AF5i5FkLk"
     })
+    
+    const filePaht = req.file.path;
+    //creo un nombre random que es unico con el momentos
+    const fileRandomName = Date.now();
+
+    cloudinary.uploader.upload(
+      console.log(file.path),
+        filePaht,
+        {public_id:`api/${fileRandomName}`,tags:`tuimg`},
+        (error, imagen)=>{
+            if(error) throw error;
+            //Borrar la imagen del servidor unlink
+
+            fs.unlinkSync(filePaht);
+            res.send(imagen)
+            
+
+        }
+        
+    )
+})
+ 
+    // const storageConfig = multer.diskStorage({
+    //     destination:'./uploads'
+    // });
+    // const upload = multer({"storage": storageConfig}).single(req.files.recetaImage.name);
+
+    // upload(req, res, (error) =>{
+
+    //     if(error) throw error;
+    //     //subire la imagen a cloudinary
+    //     cloudinary.config({
+    //         "cloud_name":"dcerhjsxd",
+    //         "api_key":"982675844322315",
+    //         "api_secret":"lHv-_VJ6px_lyZVIE5AF5i5FkLk"
+    //     })
+    //     console.log(req.body)
+    //     const filePaht = req.file.path;
+    //     //creo un nombre random que es unico con el momentos
+    //     const fileRandomName = Date.now();
+    //       cloudinary.uploader.upload("my_image.jpg", 
+    //       function(error, result) {console.log(result, error)});
+    //     cloudinary.uploader.upload(
+    //         filePaht,
+    //         {public_id:`api/${fileRandomName}`,tags:`tuimg`},
+    //         (error, Image)=>{
+    //             if(error) throw error;
+    //             //Borrar la imagen del servidor unlink
+    //             fs.unlinkSync(path.join(__dirname.replace('controllers','')),filePaht),
+    //             error =>{
+    //               if(error) throw error
+    //               const urlImage = Image.url;
+
+    //               const data ={
+    //                 "imageUrl": urlImage
+    //               }
+    //               receta.findByIdAndUpdate(
+    //                 id,
+    //                 {
+    //                   $set: data
+    //                 },
+    //                 (error, result)=> {
+    //                   if(error) throw error;
+    //                   res.send({"status":"all right"})
+    //                 }
+    //               )
+    //             }
+    //             //res.send(imagen);
+    //          }
+            
+    //     )
+    // })
 })
 
 
@@ -123,3 +185,8 @@ server.post('/upload', (req, res) =>{
 server.listen(3000, ()=>{
     console.log("servidor esta escuchando en el puerto 3000")
 }) 
+
+
+
+
+

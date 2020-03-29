@@ -17,10 +17,6 @@ export class UserComponent {
        
       }
     ) 
-    this.autorReceta = _route.snapshot.params["author"];
-
-    _data.showRecetasUser()
-}
-
- 
+   // this.autorReceta = _route.snapshot.params["author"]
+} 
 }

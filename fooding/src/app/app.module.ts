@@ -18,11 +18,13 @@ import { FooterComponent } from './footer/footer.component';
 import { CardsComponent } from './cards/cards.component';
 import { Error404Component } from './error404/error404.component';
 import { CreateRecetaComponent } from './create-receta/create-receta.component';
+import { RecetaInversaComponent } from './receta-inversa/receta-inversa.component';
 
 
 
 const RouterConfig: Routes =[
   {"path": "", "component": HomeComponent},
+  {"path": "home/:search", "component": HomeComponent},
   {"path": "home", "component": HomeComponent},
   {"path": "login", "component": LoginComponent},
   {"path":"register", "component": RegisterComponent},
@@ -32,7 +34,8 @@ const RouterConfig: Routes =[
   {"path":"receta/:author", "component":RecetaComponent},
   {"path":"receta/:_id", "component":RecetaComponent},
   {"path":"creaReceta", "component": CreateRecetaComponent},
-  {"path":"**", "component":Error404Component},
+  {"path":"recetaByingrediente", "component":  RecetaInversaComponent},
+  {"path":"**", "component":Error404Component}
 
 
 ]
@@ -49,7 +52,8 @@ const RouterConfig: Routes =[
     FooterComponent,
     CardsComponent,
     Error404Component,
-    CreateRecetaComponent
+    CreateRecetaComponent,
+    RecetaInversaComponent
     
   ],
   imports: [

@@ -7,9 +7,7 @@ import { DataService}  from  '../service/data.service'
   styleUrls: ['./create-receta.component.css']
 })
 export class CreateRecetaComponent implements OnInit {
-  formData: object = {
-  
-  }
+  formData: object = {}
   constructor( public _route : ActivatedRoute, public _data : DataService ) { }
 
   ngOnInit(): void {
@@ -18,7 +16,16 @@ export class CreateRecetaComponent implements OnInit {
   submitData(){
     
     this._data.addReceta(this.formData)
-
+  
   }
+  submitImage(){
+    this._data.uploadImage(this.formData);
+}
+
+onFileChanged(event) {
+  //console.log(Files.foo);
+   this.formData['image'] = event.target.files[0]
+   console.log(this.formData)
+}
 
 }

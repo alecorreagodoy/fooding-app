@@ -112,10 +112,14 @@
                     [(ngModel)]="formData['author']"
                     >
               </div>
-              <div class="form-group">
-                <label for="exampleFormControlFile1"> Sude tu imagen:</label>
-                <input type="file" class="form-control-file" id="exampleFormControlFile1">
-            </div>
+              <form ngForm action="http://localhost:3000/upload" method="POST"
+                enctype="multipart/form-data">
+                <div class="form-group">
+                    <input name="recetaImage" type="file" class="form-control-file">
+                    <button type="submit" class="btn" data-toggle="button"  aria-pressed="false">Enviar</button>
+                </div>
+            </form> 
+                        
             <button type="submit" class="btn" data-toggle="button"  aria-pressed="false" >
                 Crear
               </button>
