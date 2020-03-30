@@ -17,6 +17,7 @@ export class RegisterComponent implements OnInit {
         "password": ""
 
   };
+  //a mejorar
   submit(){
     this._http.post("http://localhost:3000/registrarUsuario", this.data)
     .subscribe((response)=>{

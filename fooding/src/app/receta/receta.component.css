@@ -1,7 +1,11 @@
 .navbar{
+    overflow: hidden;
+    position: sticky;
+    top: 0;
     width: 100%;
     background-color: rgb(0, 178, 145);
-    height: 10%;
+    height: 20%;
+    box-shadow: 10px 5px 5px rgb(9, 109, 91);
 
    
 }
@@ -16,12 +20,7 @@
     box-shadow: 5px 5px 5px rgb(9, 109, 91);
   
   }
-  .navbar-dark{
-   
-    box-shadow: 10px 5px 5px rgb(9, 109, 91);
-   
-}
-
+  
 .featurette-heading{
     margin-top: 0px;
     font-size: 40px;

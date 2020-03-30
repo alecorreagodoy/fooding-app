@@ -16,17 +16,21 @@ export class LoginComponent  {
     "userName": "",
     "password": ""
   };
+  //loggedId = {"_id":""}
 
   submit(){
     this._http.post("http://localhost:3000/login", this.data)
       .subscribe((response) => {
         if (response["succes"] === "Bienvenido") {
+
           this._user.isLogged = true;
+          //this.loggedId = response['_id'];
           document["cookie"] = `noisses=${response["token"]}`;
           document["cookie"] = `un=${response["un"]}`;
           this._router.navigateByUrl("/home")
+          
         }
-
+       
       })
     }
 
