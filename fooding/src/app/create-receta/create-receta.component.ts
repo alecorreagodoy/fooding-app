@@ -18,9 +18,7 @@ export class CreateRecetaComponent implements OnInit {
     this._data.addReceta(this.formData)
   
   }
-  submitImage(){
-    this._data.uploadImage(this.formData);
-}
+ 
 
 onFileChanged(event) {
   //console.log(Files.foo);
