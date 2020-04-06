@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
   };
   //a mejorar
   submit(){
-    this._http.post("http://localhost:3000/registrarUsuario", this.data)
+    this._http.post("/registrarUsuario", this.data)
     .subscribe((response)=>{
       console.log(response)
       this._router.navigate(["/login"])

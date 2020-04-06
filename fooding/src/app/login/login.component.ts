@@ -19,7 +19,7 @@ export class LoginComponent  {
   //loggedId = {"_id":""}
 
   submit(){
-    this._http.post("http://localhost:3000/login", this.data)
+    this._http.post("/login", this.data)
       .subscribe((response) => {
         if (response["succes"] === "Bienvenido") {
 

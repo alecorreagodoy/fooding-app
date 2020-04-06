@@ -10,7 +10,7 @@ import {  OnInit } from '@angular/core';
 export class DataService  {
 
   
-  myApi: string = "http://localhost:3000";
+  myApi: string = "";
 recetas:  any= [];
 usuarios:  any=[];
 newReceta: any=[];

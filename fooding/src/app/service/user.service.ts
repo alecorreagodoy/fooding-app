@@ -7,7 +7,7 @@ import { DataService}  from  '../service/data.service'
   providedIn: 'root'
 })
 export class UserService {
-  myApi: string = "http://localhost:3000";
+  myApi: string = "";
   usuarios:  any=[];
   recetas: any=[]
 
@@ -38,7 +38,7 @@ showRecetasUser(){
     
     this.recetas = response;
     
-   
+   console.log("buscar la patata caliente")
 })
 }
 
