@@ -1,12 +1,10 @@
 const receta = require('../models/receta.model');
 const mongoose = require('mongoose');
-const usuario = require('../models/user.model')
+const usuario = require('../models/user.model');
+require('../dataBase/dataBase.js');
 
 
-mongoose.connect("mongodb://localhost:27017/fooding", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true, useFindAndModify: false,
-})
+
 
 //CREAR RECETA
 exports.addReceta = (req, res)=>{

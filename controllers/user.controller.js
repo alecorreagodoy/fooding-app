@@ -4,17 +4,16 @@ const bodyController = require('./body.controller');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const path = require('path');
-const fs = require('fs')
+const fs = require('fs');
+require('../dataBase/dataBase.js')
+
+
 
 const absolutePath = path.join('', 'config/secrets.json')
 const secretContents = fs.readFileSync(absolutePath);
 const secrets = JSON.parse(secretContents);
 
-mongoose.connect("mongodb://localhost:27017/fooding", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-})
+
 
 exports.register = (req, res) => {
     bodyController.checkBody(res, req.body, [

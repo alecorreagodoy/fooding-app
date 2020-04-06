@@ -1,10 +1,9 @@
 const ingrediente = require('../models/ingredientes.model');
 const mongoose = require('mongoose');
+ require('../dataBase/dataBase.js')
 
-mongoose.connect("mongodb://localhost:27017/fooding", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true, useFindAndModify: false,
-})
+
+
 
 //añadir ingredientes
 exports.addIngrediente = (req, res)=>{

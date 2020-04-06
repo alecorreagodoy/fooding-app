@@ -14,6 +14,7 @@ const path = require('path');
 
 //server
 const server = express();
+server.set('port', process.env.PORT || 3003);
 
 //middleware
 server.use(cors());
@@ -182,10 +183,10 @@ upload(req, res, (error) =>{
 
 
 //listen
-server.listen(3000, ()=>{
-    console.log("servidor esta escuchando en el puerto 3000")
+server.listen( server.get("port")
+  , ()=>{
+    console.log(`servidor esta escuchando en el puerto ${server.get("port")}`)
 }) 
-
 
 
 
