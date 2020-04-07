@@ -18,12 +18,25 @@ export class CreateRecetaComponent implements OnInit {
     this._data.addReceta(this.formData)
   
   }
- 
-
-onFileChanged(event) {
-  //console.log(Files.foo);
-   this.formData['image'] = event.target.files[0]
-   console.log(this.formData)
+  submitImage(){
+    this._data.uploadImage(this.formData);
 }
+
+  onFileChanged(event) {
+    if (this.formData['files'] === undefined) {
+      this.formData['files'] = [];
+    }
+    
+    var fileName = event[0].name;
+    var fileList = this.formData['files'];
+    var file = event[0];
+    var reader = new FileReader();
+
+    reader.onloadend = function () {
+      fileList.push({ fileName: fileName, content: reader.result.toString() });
+    };
+
+    reader.readAsDataURL(file);
+  }
 
 }

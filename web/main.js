@@ -204,9 +204,9 @@ function CardsComponent_div_0_p_9_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const ingrediente_r73 = ctx.$implicit;
+    const ingrediente_r14 = ctx.$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", ingrediente_r73, "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", ingrediente_r14, "");
 } }
 function CardsComponent_div_0_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 1);
@@ -234,19 +234,19 @@ function CardsComponent_div_0_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const receta_r70 = ctx.$implicit;
+    const receta_r11 = ctx.$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](receta_r70["name"]);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](receta_r11["name"]);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("Tiempo de elaboraci\u00F3n: ", receta_r70["tiempoElaboracion"], "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("Tiempo de elaboraci\u00F3n: ", receta_r11["tiempoElaboracion"], "");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", receta_r70.ingredientes);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", receta_r11.ingredientes);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("Descripci\u00F3n: ", receta_r70["descripcion"], "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("Descripci\u00F3n: ", receta_r11["descripcion"], "");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("Autor: ", receta_r70["author"], " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("Autor: ", receta_r11["author"], " ");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate1"]("routerLink", "/receta/", receta_r70["_id"], "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate1"]("routerLink", "/receta/", receta_r11["_id"], "");
 } }
 class CardsComponent {
     constructor(_http, _route, _data) {
@@ -318,15 +318,26 @@ class CreateRecetaComponent {
     submitData() {
         this._data.addReceta(this.formData);
     }
+    submitImage() {
+        this._data.uploadImage(this.formData);
+    }
     onFileChanged(event) {
-        //console.log(Files.foo);
-        this.formData['image'] = event.target.files[0];
-        console.log(this.formData);
+        if (this.formData['files'] === undefined) {
+            this.formData['files'] = [];
+        }
+        var fileName = event[0].name;
+        var fileList = this.formData['files'];
+        var file = event[0];
+        var reader = new FileReader();
+        reader.onloadend = function () {
+            fileList.push({ fileName: fileName, content: reader.result.toString() });
+        };
+        reader.readAsDataURL(file);
     }
 }
 CreateRecetaComponent.ɵfac = function CreateRecetaComponent_Factory(t) { return new (t || CreateRecetaComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_service_data_service__WEBPACK_IMPORTED_MODULE_2__["DataService"])); };
-CreateRecetaComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: CreateRecetaComponent, selectors: [["app-create-receta"]], decls: 62, vars: 7, consts: [[1, "container", "new-receta"], [1, "row"], [1, "forms", "col-s-12"], ["name", "formNewReceta", 3, "ngSubmit"], ["miFormulario", "ngForm"], [1, "form-group"], ["for", "formGroupExampleInput2"], ["required", "", "name", "NameReceta", "type", "text", "placeholder", "introduce el nombre de tu receta", 1, "form-control", 3, "ngModel", "ngModelChange"], ["inputNameReceta", "ngModel"], ["required", "", "name", "ingredientes", "type", "text", "placeholder", "introduce los ingredientes con sus cantidades", 1, "form-control", 3, "ngModel", "ngModelChange"], ["inputIngredientes", "ngModel"], [1, "input-group", "mb-3"], [1, "input-group-prepend"], ["required", "", "name", "tipo", 1, "custom-select", 3, "ngModel", "ngModelChange"], ["inputCategoria", "ngModel"], ["selected", ""], ["value", "entrante"], ["value", "principal"], ["value", "postre"], ["value", "pasteleria"], ["required", "", "type", "text", "name", "descripcion", "rows", "3", "placeholder", "Explica los pasos a seguir para realizar tu receta", 1, "form-control", 3, "ngModel", "ngModelChange"], ["inputDescripcion", "ngModel"], ["required", "", "type", "text", "name", "procedimiento", "rows", "3", "placeholder", "Explica los pasos a seguir para realizar tu receta", 1, "form-control", 3, "ngModel", "ngModelChange"], ["inputProcedimiento", "ngModel"], ["required", "", "type", "text", "name", "tiempoElaboracion", "placeholder", "Introduce el tiempo que lleva realizar tu receta", 1, "form-control", 3, "ngModel", "ngModelChange"], ["inputTimeElaboracion", "ngModel"], ["required", "", "type", "text", "name", "author", "placeholder", "Que todos sepan quien creo esta receta!", 1, "form-control", 3, "ngModel", "ngModelChange"], ["inputAuthor", "ngModel"], ["ngForm", "", "action", "/upload", "method", "POST", "enctype", "multipart/form-data"], ["name", "recetaImage", "type", "file", "multiple", "", 1, "form-control-file"], ["type", "submit", "data-toggle", "button", "aria-pressed", "false", 1, "btn"]], template: function CreateRecetaComponent_Template(rf, ctx) { if (rf & 1) {
-        const _r178 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
+CreateRecetaComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: CreateRecetaComponent, selectors: [["app-create-receta"]], decls: 62, vars: 7, consts: [[1, "container", "new-receta"], [1, "row"], [1, "forms", "col-s-12"], ["name", "formNewReceta", 3, "ngSubmit"], ["miFormulario", "ngForm"], [1, "form-group"], ["for", "formGroupExampleInput2"], ["required", "", "name", "NameReceta", "type", "text", "placeholder", "introduce el nombre de tu receta", 1, "form-control", 3, "ngModel", "ngModelChange"], ["inputNameReceta", "ngModel"], ["required", "", "name", "ingredientes", "type", "text", "placeholder", "introduce los ingredientes con sus cantidades", 1, "form-control", 3, "ngModel", "ngModelChange"], ["inputIngredientes", "ngModel"], [1, "input-group", "mb-3"], [1, "input-group-prepend"], ["required", "", "name", "tipo", 1, "custom-select", 3, "ngModel", "ngModelChange"], ["inputCategoria", "ngModel"], ["selected", ""], ["value", "entrante"], ["value", "principal"], ["value", "postre"], ["value", "pasteleria"], ["required", "", "type", "text", "name", "descripcion", "rows", "3", "placeholder", "Explica los pasos a seguir para realizar tu receta", 1, "form-control", 3, "ngModel", "ngModelChange"], ["inputDescripcion", "ngModel"], ["required", "", "type", "text", "name", "procedimiento", "rows", "3", "placeholder", "Explica los pasos a seguir para realizar tu receta", 1, "form-control", 3, "ngModel", "ngModelChange"], ["inputProcedimiento", "ngModel"], ["required", "", "type", "text", "name", "tiempoElaboracion", "placeholder", "Introduce el tiempo que lleva realizar tu receta", 1, "form-control", 3, "ngModel", "ngModelChange"], ["inputTimeElaboracion", "ngModel"], ["required", "", "type", "text", "name", "author", "placeholder", "Que todos sepan quien creo esta receta!", 1, "form-control", 3, "ngModel", "ngModelChange"], ["inputAuthor", "ngModel"], ["ngForm", "", "action", "/upload", "method", "POST", "enctype", "multipart/form-data"], ["name", "image", "type", "file", 1, "form-control-file", 3, "change"], ["type", "submit", "data-toggle", "button", "aria-pressed", "false", 1, "btn"]], template: function CreateRecetaComponent_Template(rf, ctx) { if (rf & 1) {
+        const _r24 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](1, "app-nav-bar");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div");
@@ -337,7 +348,7 @@ CreateRecetaComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵde
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "div", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "div", 2);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](7, "form", 3, 4);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngSubmit", function CreateRecetaComponent_Template_form_ngSubmit_7_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r178); const _r170 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](8); return _r170.form.valid && ctx.submitData(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngSubmit", function CreateRecetaComponent_Template_form_ngSubmit_7_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r24); const _r16 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](8); return _r16.form.valid && ctx.submitData(); });
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "div", 5);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "label", 6);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](11, "Nombre de la receta:");
@@ -415,7 +426,9 @@ CreateRecetaComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵde
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](57, "form", 28);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](58, "div", 5);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](59, "input", 29);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](59, "input", 29);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("change", function CreateRecetaComponent_Template_input_change_59_listener($event) { return ctx.onFileChanged($event.target.files); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](60, "button", 30);
@@ -854,9 +867,9 @@ function RecetaComponent_ul_42_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const ingrediente_r65 = ctx.$implicit;
+    const ingrediente_r51 = ctx.$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ingrediente_r65);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ingrediente_r51);
 } }
 const _c0 = function () { return ["_id"]; };
 class RecetaComponent {
@@ -871,7 +884,7 @@ class RecetaComponent {
     }
 }
 RecetaComponent.ɵfac = function RecetaComponent_Factory(t) { return new (t || RecetaComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_service_data_service__WEBPACK_IMPORTED_MODULE_2__["DataService"])); };
-RecetaComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: RecetaComponent, selectors: [["app-receta"]], decls: 101, vars: 8, consts: [["lang", "en"], ["charset", "utf-8"], ["name", "viewport", "content", "width=device-width, initial-scale=1, shrink-to-fit=no"], ["name", "description", "content", ""], ["name", "author", "content", "Mark Otto, Jacob Thornton, and Bootstrap contributors"], ["name", "generator", "content", "Jekyll v3.8.6"], ["rel", "canonical", "href", "https://getbootstrap.com/docs/4.4/examples/carousel/"], ["href", "https://getbootstrap.com/docs/4.4/dist/css/bootstrap.min.css", "rel", "stylesheet", "integrity", "sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh", "crossorigin", "anonymous"], ["href", "https://getbootstrap.com/docs/4.4/examples/carousel/carousel.css", "rel", "stylesheet"], [1, "navbar", "navbar-expand-md", "navbar-dark", "sticky-top"], ["href", "#", 1, "navbar-brand"], ["src", "/assets/img/FOODING-ICONO.png", "width", "50", "height", "50", "alt", "logo"], ["type", "button", "data-toggle", "collapse", "data-target", "#navbarCollapse", "aria-controls", "navbarCollapse", "aria-expanded", "false", "aria-label", "Toggle navigation", 1, "navbar-toggler"], [1, "navbar-toggler-icon"], ["id", "navbarCollapse", 1, "collapse", "navbar-collapse"], [1, "navbar-nav", "mr-auto"], [1, "nav-item", "active"], ["href", "#", 1, "nav-link"], [1, "sr-only"], [1, "nav-item"], ["href", "#", "tabindex", "-1", 1, "nav-link"], [1, "form-inline", "mt-2", "mt-md-0"], ["routerLink", "/creaReceta", "type", "button", 1, "btn", "btn-outline-success", "my-2", "my-sm-0"], ["role", "main"], [1, "featurette-divider"], [1, "row", "featurette"], [1, "col-md-7"], [1, "featurette-heading"], [4, "ngFor", "ngForOf"], ["href", "#", 3, "routerLink"], [1, "col-md-5"], ["width", "600", "height", "600", "src", "/assets/img/ensalada2.jpg", "preserveAspectRatio", "xMidYMid slice", "focusable", "false", "role", "img", "aria-label", "Placeholder: 500x500", 1, "bd-placeholder-img", "bd-placeholder-img-lg", "featurette-image", "img-fluid", "mx-auto"], [1, "container", "marketing"], [1, "row"], [1, "col-lg-4"], ["width", "140", "height", "140", "src", "/assets/img/hab.jpg", "preserveAspectRatio", "xMidYMid slice", "focusable", "false", "role", "img", "aria-label", "Placeholder: 140x140", 1, "bd-placeholder-img", "rounded-circle"], ["href", "#", "role", "button", 1, "btn", "btn-secondary"], ["width", "140", "height", "140", "src", "/assets/img/croketa.jpg", "preserveAspectRatio", "xMidYMid slice", "focusable", "false", "role", "img", "aria-label", "Placeholder: 140x140", 1, "bd-placeholder-img", "rounded-circle"], ["width", "140", "height", "140", "src", "/assets/img/postre.jpg", "preserveAspectRatio", "xMidYMid slice", "focusable", "false", "role", "img", "aria-label", "Placeholder: 140x140", 1, "bd-placeholder-img", "rounded-circle"]], template: function RecetaComponent_Template(rf, ctx) { if (rf & 1) {
+RecetaComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: RecetaComponent, selectors: [["app-receta"]], decls: 101, vars: 9, consts: [["lang", "en"], ["charset", "utf-8"], ["name", "viewport", "content", "width=device-width, initial-scale=1, shrink-to-fit=no"], ["name", "description", "content", ""], ["name", "author", "content", "Mark Otto, Jacob Thornton, and Bootstrap contributors"], ["name", "generator", "content", "Jekyll v3.8.6"], ["rel", "canonical", "href", "https://getbootstrap.com/docs/4.4/examples/carousel/"], ["href", "https://getbootstrap.com/docs/4.4/dist/css/bootstrap.min.css", "rel", "stylesheet", "integrity", "sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh", "crossorigin", "anonymous"], ["href", "https://getbootstrap.com/docs/4.4/examples/carousel/carousel.css", "rel", "stylesheet"], [1, "navbar", "navbar-expand-md", "navbar-dark", "sticky-top"], ["href", "#", 1, "navbar-brand"], ["src", "/assets/img/FOODING-ICONO.png", "width", "50", "height", "50", "alt", "logo"], ["type", "button", "data-toggle", "collapse", "data-target", "#navbarCollapse", "aria-controls", "navbarCollapse", "aria-expanded", "false", "aria-label", "Toggle navigation", 1, "navbar-toggler"], [1, "navbar-toggler-icon"], ["id", "navbarCollapse", 1, "collapse", "navbar-collapse"], [1, "navbar-nav", "mr-auto"], [1, "nav-item", "active"], ["href", "#", 1, "nav-link"], [1, "sr-only"], [1, "nav-item"], ["href", "#", "tabindex", "-1", 1, "nav-link"], [1, "form-inline", "mt-2", "mt-md-0"], ["routerLink", "/creaReceta", "type", "button", 1, "btn", "btn-outline-success", "my-2", "my-sm-0"], ["role", "main"], [1, "featurette-divider"], [1, "row", "featurette"], [1, "col-md-7"], [1, "featurette-heading"], [4, "ngFor", "ngForOf"], ["href", "#", 3, "routerLink"], [1, "col-md-5"], ["width", "600", "height", "600", "preserveAspectRatio", "xMidYMid slice", "focusable", "false", "role", "img", "aria-label", "Placeholder: 500x500", 1, "bd-placeholder-img", "bd-placeholder-img-lg", "featurette-image", "img-fluid", "mx-auto", 3, "src"], [1, "container", "marketing"], [1, "row"], [1, "col-lg-4"], ["width", "140", "height", "140", "src", "/assets/img/hab.jpg", "preserveAspectRatio", "xMidYMid slice", "focusable", "false", "role", "img", "aria-label", "Placeholder: 140x140", 1, "bd-placeholder-img", "rounded-circle"], ["href", "#", "role", "button", 1, "btn", "btn-secondary"], ["width", "140", "height", "140", "src", "/assets/img/croketa.jpg", "preserveAspectRatio", "xMidYMid slice", "focusable", "false", "role", "img", "aria-label", "Placeholder: 140x140", 1, "bd-placeholder-img", "rounded-circle"], ["width", "140", "height", "140", "src", "/assets/img/postre.jpg", "preserveAspectRatio", "xMidYMid slice", "focusable", "false", "role", "img", "aria-label", "Placeholder: 140x140", 1, "bd-placeholder-img", "rounded-circle"]], template: function RecetaComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "html", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "head");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](2, "meta", 1);
@@ -1038,9 +1051,11 @@ RecetaComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineCo
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("", ctx._data.receta["procedimiento"], " ");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate1"]("routerLink", "user/", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction0"](7, _c0), "");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate1"]("routerLink", "user/", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction0"](8, _c0), "");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx._data.receta["author"]);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate"]("src", ctx._data.receta["images"][0], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
     } }, directives: [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["ɵangular_packages_forms_forms_y"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["NgControlStatusGroup"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["NgForm"], _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterLink"], _angular_common__WEBPACK_IMPORTED_MODULE_4__["NgForOf"], _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterLinkWithHref"], _footer_footer_component__WEBPACK_IMPORTED_MODULE_5__["FooterComponent"]], styles: [".navbar[_ngcontent-%COMP%]{\n    overflow: hidden;\n    position: -webkit-sticky;\n    position: sticky;\n    top: 0;\n    width: 100%;\n    background-color: rgb(0, 178, 145);\n    height: 20%;\n    box-shadow: 10px 5px 5px rgb(9, 109, 91);\n\n   \n}\n.navbar[_ngcontent-%COMP%]   .logo[_ngcontent-%COMP%]{\n    float: left;\n    display: block;\n    text-align: center;\n    border-radius: 12%;\n    box-shadow: 5px 5px 5px rgb(9, 109, 91);\n    text-decoration: none;\n    border-radius: 12%;\n    box-shadow: 5px 5px 5px rgb(9, 109, 91);\n  \n  }\n.featurette-heading[_ngcontent-%COMP%]{\n    margin-top: 0px;\n    font-size: 40px;\n    \n}\n.btn[_ngcontent-%COMP%]{\n    background-color: rgb(255, 162, 161);\n    color: rgb(0, 178, 145);\n   \n    border-radius: 30px;\n}\n.featurette[_ngcontent-%COMP%]{\n    margin: auto;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcmVjZXRhL3JlY2V0YS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksZ0JBQWdCO0lBQ2hCLHdCQUFnQjtJQUFoQixnQkFBZ0I7SUFDaEIsTUFBTTtJQUNOLFdBQVc7SUFDWCxrQ0FBa0M7SUFDbEMsV0FBVztJQUNYLHdDQUF3Qzs7O0FBRzVDO0FBQ0E7SUFDSSxXQUFXO0lBQ1gsY0FBYztJQUNkLGtCQUFrQjtJQUNsQixrQkFBa0I7SUFDbEIsdUNBQXVDO0lBQ3ZDLHFCQUFxQjtJQUNyQixrQkFBa0I7SUFDbEIsdUNBQXVDOztFQUV6QztBQUVGO0lBQ0ksZUFBZTtJQUNmLGVBQWU7O0FBRW5CO0FBQ0E7SUFDSSxvQ0FBb0M7SUFDcEMsdUJBQXVCOztJQUV2QixtQkFBbUI7QUFDdkI7QUFFQTtJQUNJLFlBQVk7QUFDaEIiLCJmaWxlIjoic3JjL2FwcC9yZWNldGEvcmVjZXRhLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubmF2YmFye1xuICAgIG92ZXJmbG93OiBoaWRkZW47XG4gICAgcG9zaXRpb246IHN0aWNreTtcbiAgICB0b3A6IDA7XG4gICAgd2lkdGg6IDEwMCU7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogcmdiKDAsIDE3OCwgMTQ1KTtcbiAgICBoZWlnaHQ6IDIwJTtcbiAgICBib3gtc2hhZG93OiAxMHB4IDVweCA1cHggcmdiKDksIDEwOSwgOTEpO1xuXG4gICBcbn1cbi5uYXZiYXIgLmxvZ297XG4gICAgZmxvYXQ6IGxlZnQ7XG4gICAgZGlzcGxheTogYmxvY2s7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xuICAgIGJvcmRlci1yYWRpdXM6IDEyJTtcbiAgICBib3gtc2hhZG93OiA1cHggNXB4IDVweCByZ2IoOSwgMTA5LCA5MSk7XG4gICAgdGV4dC1kZWNvcmF0aW9uOiBub25lO1xuICAgIGJvcmRlci1yYWRpdXM6IDEyJTtcbiAgICBib3gtc2hhZG93OiA1cHggNXB4IDVweCByZ2IoOSwgMTA5LCA5MSk7XG4gIFxuICB9XG4gIFxuLmZlYXR1cmV0dGUtaGVhZGluZ3tcbiAgICBtYXJnaW4tdG9wOiAwcHg7XG4gICAgZm9udC1zaXplOiA0MHB4O1xuICAgIFxufVxuLmJ0bntcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMjU1LCAxNjIsIDE2MSk7XG4gICAgY29sb3I6IHJnYigwLCAxNzgsIDE0NSk7XG4gICBcbiAgICBib3JkZXItcmFkaXVzOiAzMHB4O1xufVxuXG4uZmVhdHVyZXR0ZXtcbiAgICBtYXJnaW46IGF1dG87XG59XG4iXX0= */", ".bd-placeholder-img[_ngcontent-%COMP%] {\n        font-size: 1.125rem;\n        text-anchor: middle;\n        -webkit-user-select: none;\n        -moz-user-select: none;\n        -ms-user-select: none;\n        user-select: none;\n      }\n\n      @media (min-width: 768px) {\n        .bd-placeholder-img-lg[_ngcontent-%COMP%] {\n          font-size: 3.5rem;\n        }\n      }"] });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](RecetaComponent, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
@@ -1394,11 +1409,11 @@ function UserComponent_div_19_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const usuario_r61 = ctx.$implicit;
+    const usuario_r2 = ctx.$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](7);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](usuario_r61["userName"]);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](usuario_r2["userName"]);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("", usuario_r61["email"], " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("", usuario_r2["email"], " ");
 } }
 function UserComponent_div_25_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 28);
@@ -1413,9 +1428,9 @@ function UserComponent_div_25_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const receta_r63 = ctx.$implicit;
+    const receta_r4 = ctx.$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("", receta_r63["name"], " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("", receta_r4["name"], " ");
 } }
 class UserComponent {
     constructor(_route, _data) {

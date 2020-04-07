@@ -2,18 +2,35 @@ const receta = require('../models/receta.model');
 const mongoose = require('mongoose');
 const usuario = require('../models/user.model');
 require('../dataBase/dataBase.js');
+const { uploader, cloudinaryConfig } = require('../uploaderHelper/cloudinaryConfig.js');
 
 
 
 
-//CREAR RECETA
-exports.addReceta = (req, res)=>{
-    //console.log(req.body)
+
+
+async function saveImages(req, res, callback) {
+    try {
+        await uploader.upload(req.body.files[0].content)
+            .then((result) => {
+                req.body.images = [];
+                req.body.images.push(result.url);
+                callback(req, res);
+            })
+            .catch((err) => {
+                throw err
+            });
+    } catch (error) {
+        throw error;
+    }
+}
+
+function saveReceta(req, res) {
     let id = req.params.id
     const data = {
         "_id": mongoose.Types.ObjectId(),
-        "name":req.body.name,
-        "ingredientes": req.body.ingredientes, 
+        "name": req.body.name,
+        "ingredientes": req.body.ingredientes,
         "tipo": req.body.tipo,
         "descripcion": req.body.descripcion,
         "procedimiento": req.body.procedimiento,
@@ -22,13 +39,23 @@ exports.addReceta = (req, res)=>{
         "temporada": req.body.temporada,
         "isAnonymous": req.body.isAnonymous,
         "author": req.body.author,
-        "user": id
+        "user": id,
+        "images": req.body.images
     }
     const newReceta = new receta(data);
-    newReceta.save((error,result) =>{
+    newReceta.save((error, result) => {
         if (error) throw error;
-        res.send({"message":"Receta creada con éxito!!!", "_id":result._id})
+        res.send({ "message": "Receta creada con éxito!!!", "_id": result._id })
     })
+}
+
+//CREAR RECETA
+exports.addReceta = (req, res) => {
+    try {
+        saveImages(req, res, saveReceta);
+    } catch (error) {
+        throw error;
+    }
 }
 
 //editar receta PUT

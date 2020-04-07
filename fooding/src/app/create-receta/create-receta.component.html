@@ -116,7 +116,8 @@
               <form ngForm action="/upload" method="POST"
                 enctype="multipart/form-data">
                 <div class="form-group">
-                    <input name="recetaImage" type="file" class="form-control-file" multiple>
+                    <input name="image" type="file" class="form-control-file" (change)="onFileChanged($event.target.files)">
+                    
                 </div>
             </form> 
                         

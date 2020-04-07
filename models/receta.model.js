@@ -77,9 +77,11 @@ const Schema = mongoose.Schema({
         //         return true;
         //     }
         // }
-
     },
-    
+    "images": {
+        type: [types.String],
+        require: false
+    }
     
 
 

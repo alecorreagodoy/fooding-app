@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 
@@ -19,6 +20,7 @@ import { CardsComponent } from './cards/cards.component';
 import { Error404Component } from './error404/error404.component';
 import { CreateRecetaComponent } from './create-receta/create-receta.component';
 import { RecetaInversaComponent } from './receta-inversa/receta-inversa.component';
+
 
 
 
@@ -55,12 +57,15 @@ const RouterConfig: Routes =[
     CreateRecetaComponent,
     RecetaInversaComponent
     
+    
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot( RouterConfig, {useHash:true}),
     FormsModule,
     HttpClientModule
+  
+   
 
   ],
   providers: [ DataService, UserService ],
